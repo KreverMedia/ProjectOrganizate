@@ -38,12 +38,17 @@ namespace ProgramNewCount
         private void cargarpetis()
         {
           var p=  cws.TodaslasPeticiones();
-            peticiones.Content = p.Count.ToString();
+            if (peticiones.Content != null)
+            {
+                peticiones.Content = p.Count.ToString();
+            }
         }
 
         private void ventanapeticiones(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            PetitionWindow p = new PetitionWindow();
+            p.Show();
+            this.Close();
         }
 
         private void listadecodigos(object sender, RoutedEventArgs e)

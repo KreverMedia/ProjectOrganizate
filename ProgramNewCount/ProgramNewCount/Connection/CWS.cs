@@ -115,7 +115,7 @@ namespace ProgramNewCount.Connection
         }
         private async Task<string> DeletePetition(string correo)
         {
-            url = new Uri("http://localhost:61177/NuevaCuenta.asmx/Eliminarcodigo");
+            url = new Uri("http://localhost:61177/NuevaCuenta.asmx/Eliminarpeticion");
             formulario = new List<KeyValuePair<string, string>>();
             formulario.Add(new KeyValuePair<string, string>("correo", correo));
             content = new FormUrlEncodedContent(formulario);

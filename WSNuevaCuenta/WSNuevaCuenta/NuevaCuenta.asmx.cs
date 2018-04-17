@@ -153,15 +153,16 @@ namespace WSNuevaCuenta
         public string Eliminarcodigo(string codigo)
         {
             con = new MySqlConnection();
-            con.ConnectionString= "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
             try
             {
                 con.Open();
-                    var com = new MySqlCommand("delete from nuevacuenta where codigo=" + codigo,con);
+                var com = new MySqlCommand("delete from nuevacuenta where codigo ='" + codigo + "'", con);
                 com.ExecuteNonQuery();
                 con.Close();
                 return "ok";
-            }catch(MySqlException e)
+            }
+            catch (MySqlException e)
             {
                 return "error";
             }
@@ -193,7 +194,7 @@ namespace WSNuevaCuenta
             {
                 con.Open();
                
-                    var com = new MySqlCommand("delete from peticiones where correo=" +correo, con);
+                    var com = new MySqlCommand("delete from peticiones where correo='" +correo+"'", con);
                     com.ExecuteNonQuery();
                 
                 con.Close();

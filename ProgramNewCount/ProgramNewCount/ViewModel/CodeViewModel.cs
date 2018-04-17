@@ -21,10 +21,9 @@ namespace ProgramNewCount.ViewModel
             get { return lista; }
             set
             {
-                if (value.Count != 0)
-                {
+              
                     lista = value;
-                }
+                
               
                 OnPropertyChanged("Lista");
             }
@@ -44,9 +43,14 @@ namespace ProgramNewCount.ViewModel
             }
         }
 
-        private void OnPropertyChanged(string v)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
         {
-          
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         private void cargarmensaje()
@@ -75,26 +79,33 @@ namespace ProgramNewCount.ViewModel
 
         private void AccionEliminarTodo(object obj)
         {
-            l.BorrarTodoslosCodigos();
-            Lista = convertirObservable(l.TodosLosCodigos());
-            Lista.Count();
+            
+            var z= l.BorrarTodoslosCodigos();
+            if (z.Equals("ok"))
+            {
+                while (Lista.Count > 0) { 
+                    Lista.Remove(Lista[0]);
+                }
+            }
+           
         }
 
         private void AccionBorrarSeleccionados(object obj)
         {
+            String z = "";
             for(int i=0; i < Lista.Count; i++)
             {
                 if (Lista[i].eliminar)
                 {
-                    l.Borrarcodigo(Lista[i].clave);
+                   z= l.Borrarcodigo(Lista[i].clave);
                     
                 }
             }
-            for (int i = 0; i < Lista.Count; i++)
+            if (z.Equals("ok"))
             {
-                Lista.Remove(Lista[i]);
+                
+                Lista = convertirObservable(l.TodosLosCodigos());
             }
-            Lista = convertirObservable(l.TodosLosCodigos());
         }
 
         private ObservableCollection<NewCountMVVM> convertirObservable(List<NewCount> list)
