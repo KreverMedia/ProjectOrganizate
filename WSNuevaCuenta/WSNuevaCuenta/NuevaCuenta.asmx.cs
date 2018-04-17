@@ -65,6 +65,26 @@ namespace WSNuevaCuenta
             }
         }
         [WebMethod]
+        public string CrearPeticion(string nombre,string apellido1,string apellido2, string correo, string descripcion )
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+               
+                MySqlCommand com = new MySqlCommand("insert into peticiones  values(0,'"+nombre+"','"+apellido1+"','"+apellido2+"','"+correo+"','"+descripcion+"')", con);
+                com.ExecuteNonQuery();
+                con.Close();
+                
+                return "ok";
+            }
+            catch (MySqlException e)
+            {
+                return "error";
+            }
+        }
+        [WebMethod]
         public string SacarTodaslasClaves()
         {
             con = new MySqlConnection();
@@ -82,11 +102,127 @@ namespace WSNuevaCuenta
                     ncuenta.rol =(String) reader.GetValue(1);
                     listacodigos.Add(ncuenta);
                 }
-                return JsonConvert.SerializeObject(listacodigos);
+                Respuesta r = new Respuesta();
+                r.codigos = listacodigos;
+                r.correcto = 0;
+                return JsonConvert.SerializeObject(r);
             }catch(MySqlException e)
             {
-                return "Ha ocurrido un error";
+
+                Respuesta r = new Respuesta();
+                r.codigos = new List<NewCount>();
+                r.correcto = 1;
+                return JsonConvert.SerializeObject(r);
             }
+        }
+        [WebMethod]
+        public string SacarTodaslasPeticiones()
+        {
+            con = new MySqlConnection();
+            con.ConnectionString= "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+                MySqlCommand com = new MySqlCommand("select * from peticiones", con);
+                MySqlDataReader reader = com.ExecuteReader();
+                List<Peticion> peticiones = new List<Peticion>();
+                while (reader.Read())
+                {
+                    Peticion peti = new Peticion();
+                    peti.nombre = (String)reader.GetValue(1);
+                    peti.apellido1 = (String)reader.GetValue(2);
+                    peti.apellido2 = (String)reader.GetValue(3);
+                    peti.correo = (String)reader.GetValue(4);
+                    peti.descripcion = (String)reader.GetValue(5);
+                    peticiones.Add(peti);
+                }
+                RespuestaPeti rpeti = new RespuestaPeti();
+                rpeti.peticiones = peticiones;
+                rpeti.correcto = 0;
+                return JsonConvert.SerializeObject(rpeti);
+
+            }catch(MySqlException e)
+            {
+                RespuestaPeti rpeti = new RespuestaPeti();
+                rpeti.correcto = 1;
+                rpeti.peticiones = new List<Peticion>();
+                return JsonConvert.SerializeObject(rpeti);
             }
+        }
+        [WebMethod]
+        public string Eliminarcodigo(string codigo)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString= "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+                    var com = new MySqlCommand("delete from nuevacuenta where codigo=" + codigo,con);
+                com.ExecuteNonQuery();
+                con.Close();
+                return "ok";
+            }catch(MySqlException e)
+            {
+                return "error";
+            }
+        }
+        [WebMethod]
+        public string Eliminartodosloscodigos()
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+                var com = new MySqlCommand("delete from nuevacuenta", con);
+                com.ExecuteNonQuery();
+                con.Close();
+                return "ok";
+            }
+            catch (MySqlException e)
+            {
+                return "error";
+            }
+        }
+        [WebMethod]
+        public string Eliminarpeticion(string correo)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+               
+                    var com = new MySqlCommand("delete from peticiones where correo=" +correo, con);
+                    com.ExecuteNonQuery();
+                
+                con.Close();
+                return "ok";
+            }
+            catch (MySqlException e)
+            {
+                return "error";
+            }
+        }
+        [WebMethod]
+        public string EliminarTodaslasPeticiones()
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+                
+                    var com = new MySqlCommand("delete from peticiones", con);
+                    com.ExecuteNonQuery();
+                
+                con.Close();
+                return "ok";
+            }
+            catch (MySqlException e)
+            {
+                return "error";
+            }
+        }
     }
 }

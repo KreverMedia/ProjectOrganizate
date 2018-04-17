@@ -7,23 +7,28 @@
         mc:Ignorable="d"
         Title="Down Toledo" Height="574" Width="976"  ResizeMode="NoResize">
     <Grid Background="#3A6DC8">
-        <Image HorizontalAlignment="Center" Height="112" Grid.Row="0" Margin="242,10,268,0" VerticalAlignment="Top" Width="282" Source="..\Img\Logo.png"/>
-        <ScrollViewer HorizontalAlignment="Left" Height="408" Margin="27,127,0,0" VerticalAlignment="Top" Width="933">
-            <ListBox Background="#3A97C9" HorizontalAlignment="Left" ItemsSource="{Binding Lista}" SelectedItem="{Binding Cuentaseleccionada}" Height="408" VerticalAlignment="Top" Width="923">
+        <Image HorizontalAlignment="Center" Height="112" Grid.Row="0" Margin="326,0,362,0" VerticalAlignment="Top" Width="282" Source="..\Img\Logo.png"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="348" Margin="27,112,0,0" VerticalAlignment="Top" Width="933">
+            <ListBox Background="#3A97C9" HorizontalAlignment="Left" ItemsSource="{Binding Lista}" SelectedItem="{Binding Cuentaseleccionada}" Height="348" VerticalAlignment="Top" Width="923">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="Auto">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding clave}" Grid.Column="0" HorizontalAlignment="Right"/>
-                            <Label Content="{Binding rol}" Grid.Column="1" HorizontalAlignment="Left"/>
+                            <Label Content="{Binding clave}" Grid.Column="0" HorizontalAlignment="Left" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
+                            <Label Content="{Binding rol}" Grid.Column="1"  HorizontalAlignment="Center" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
+                            <CheckBox IsChecked="{Binding eliminar}" Grid.Column="2" HorizontalAlignment="Right"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
+        <Button x:Name="atras" Content="Volver atras" HorizontalAlignment="Left" Margin="725,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
+        <Button  Content="Eliminar Seleccionados" Command="{Binding EliminarSeleccionados}" HorizontalAlignment="Left" Margin="27,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
+        <Button  Content="Eliminar a Todos" Command="{Binding EliminarTodos}" HorizontalAlignment="Left" Margin="357,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
 
     </Grid>
 

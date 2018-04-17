@@ -23,6 +23,14 @@ namespace ProgramNewCount.View
         {
             InitializeComponent();
             DataContext = new ViewModel.CodeViewModel();
+            atras.Click += volveratras;
+        }
+
+        private void volveratras(object sender, RoutedEventArgs e)
+        {
+            var r = new MainWindow();
+            r.Show();
+            this.Close();
         }
     }
 }

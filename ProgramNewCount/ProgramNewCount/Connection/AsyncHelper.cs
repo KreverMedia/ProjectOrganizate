@@ -17,11 +17,20 @@ namespace ProgramNewCount.Connection
 
         public static TResult RunSync<TResult>(Func<Task<TResult>> func)
         {
-            return AsyncHelper._myTaskFactory
+            try
+            {
+ return AsyncHelper._myTaskFactory
               .StartNew<Task<TResult>>(func)
               .Unwrap<TResult>()
               .GetAwaiter()
               .GetResult();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         public static void RunSync(Func<Task> func)

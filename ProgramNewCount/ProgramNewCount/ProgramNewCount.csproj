@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="Connection\AsyncHelper.cs" />
     <Compile Include="Connection\CWS.cs" />
+    <Compile Include="Util\Command.cs" />
     <Compile Include="ViewModel\CodeViewModel.cs" />
     <Compile Include="View\CodeWindow.xaml.cs">
       <DependentUpon>CodeWindow.xaml</DependentUpon>

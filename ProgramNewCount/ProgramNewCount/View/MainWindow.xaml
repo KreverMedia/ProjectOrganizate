@@ -10,10 +10,13 @@
         <Image HorizontalAlignment="Center" Height="112" Margin="330,10,361,0" VerticalAlignment="Top" Width="277" Source="..\Img\Logo.png"/>
         <Label Content="Nueva Password:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="52,188,643,0" RenderTransformOrigin="0.332,0.568" Width="273"/>
         <Label Content="Rol:" HorizontalAlignment="Left" Margin="254,237,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
+        <Label Content="Peticiones:" HorizontalAlignment="Left" Margin="752,21,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
+        <Label x:Name="peticiones" Content="0" HorizontalAlignment="Left" Margin="932,21,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
         <TextBox HorizontalAlignment="Left" Height="44" Margin="330,188,0,0" TextWrapping="Wrap" x:Name="clave" VerticalAlignment="Top" Width="438" FontSize="30" FontFamily="Cooper Black"/>
         <TextBox HorizontalAlignment="Left" Height="44" Margin="330,237,0,0" TextWrapping="Wrap" x:Name="rol" VerticalAlignment="Top" Width="438" FontSize="30" FontFamily="Cooper Black"/>
-        <Button x:Name="nueva" Content="Generar nueva key" HorizontalAlignment="Left" Margin="254,409,0,0" VerticalAlignment="Top" Width="188" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
-        <Button x:Name="lista" Content="Lista de claves sin usar" HorizontalAlignment="Left" Margin="580,409,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
+        <Button x:Name="nueva" Content="Generar nueva key" HorizontalAlignment="Left" Margin="53,409,0,0" VerticalAlignment="Top" Width="188" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
+        <Button x:Name="lista" Content="Lista de claves sin usar" HorizontalAlignment="Left" Margin="388,409,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
+        <Button x:Name="petis" Content="Consultar peticiones" HorizontalAlignment="Left" Margin="707,409,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
 
     </Grid>
 </Window>

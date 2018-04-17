@@ -30,7 +30,20 @@ namespace ProgramNewCount
             clave.IsEnabled = false;
             nueva.Click += nuevocodigo;
             lista.Click += listadecodigos;
+            petis.Click += ventanapeticiones;
+            cargarpetis();
             
+        }
+
+        private void cargarpetis()
+        {
+          var p=  cws.TodaslasPeticiones();
+            peticiones.Content = p.Count.ToString();
+        }
+
+        private void ventanapeticiones(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void listadecodigos(object sender, RoutedEventArgs e)
@@ -38,6 +51,7 @@ namespace ProgramNewCount
             CodeWindow c = new CodeWindow();
             c.Show();
             this.Close();
+            
         }
 
         private void nuevocodigo(object sender, RoutedEventArgs e)
