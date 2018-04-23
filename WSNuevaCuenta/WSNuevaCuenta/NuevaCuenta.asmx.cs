@@ -2,9 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.Services;
 using WSNuevaCuenta.Model;
 
@@ -22,7 +19,7 @@ namespace WSNuevaCuenta
     {
         MySqlConnection con;
         [WebMethod]
-        public string CrearCodigo(string rol)
+        public string CrearCodigo(int rol)
         {
             con = new MySqlConnection();
             con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
@@ -55,7 +52,7 @@ namespace WSNuevaCuenta
                 com.ExecuteNonQuery();
                 con.Close();
                 NewCount nueva = new NewCount();
-                nueva.rol = rol;
+                nueva.idrol = rol;
                 nueva.clave = clave;
                 String respuesta = JsonConvert.SerializeObject(nueva);
                 return respuesta;
@@ -99,7 +96,7 @@ namespace WSNuevaCuenta
                 {
                     NewCount ncuenta = new NewCount();
                     ncuenta.clave =(String) reader.GetValue(0);
-                    ncuenta.rol =(String) reader.GetValue(1);
+                    ncuenta.idrol =(int) reader.GetValue(1);
                     listacodigos.Add(ncuenta);
                 }
                 Respuesta r = new Respuesta();

@@ -8,7 +8,7 @@ namespace WSNuevaCuenta.Model
     public class NewCount
     {
         public string  clave { get; set; }
-        public string rol { get; set; }
+        public int idrol { get; set; }
     }
     public class Respuesta
     {
