@@ -4,6 +4,7 @@
     Author     : spiro
 --%>
 
+<%@page import="pojos.Nuevacuenta"%>
 <%@page import="pojos.Usuario"%>
 <%@page import="javax.persistence.Query"%>
 <%@page import="pojos.Peticiones"%>
@@ -25,9 +26,9 @@
             List lista;
             EntityTransaction transaction;
             em = (EntityManager) session.getAttribute("em");
-     
+
             if (em == null) {
-                       session.setAttribute("codigosopeticiones", true);
+                session.setAttribute("codigosopeticiones", true);
                 em = JPAUtil.getEntityManagerFactory().createEntityManager();
                 session.setAttribute("em", em);
             }
@@ -171,7 +172,43 @@
         %>
         <jsp:forward page="codigos.jsp"/>
         <%
-            }
+        } else if (op.equals("eliminar")) {
+            String correo = request.getParameter("correo");
+            String sql = "Select c from Peticiones c where c.correo='" + correo + "'";
+            Query query = em.createQuery(sql);
+            Peticiones peticion = (Peticiones) query.getResultList().get(0);
+            transaction = em.getTransaction();
+            transaction.begin();
+            em.remove(peticion);
+            transaction.commit();
+            sql = "Select c from Peticiones c";
+            query = em.createQuery(sql);
+            List roles = query.getResultList();
+            session.setAttribute("peticiones", roles);
+            session.setAttribute("codigosopeticiones", true);
         %>
+        <jsp:forward page="codigos.jsp"/>
+        <%
+            } else if (op.equals("eliminarcodigo")) {
+                String codigo = request.getParameter("codigo");
+                String sql = "Select c from Nuevacuenta c where c.codigo='" + codigo + "'";
+                Query query = em.createQuery(sql);
+                Nuevacuenta codigoelegido = (Nuevacuenta) query.getResultList().get(0);
+                transaction = em.getTransaction();
+                transaction.begin();
+                em.remove(codigoelegido);
+                transaction.commit();
+                sql = "Select c from Nuevacuenta c";
+                query = em.createQuery(sql);
+                List roles = query.getResultList();
+                session.setAttribute("codigos", roles);
+                session.setAttribute("codigosopeticiones", false);
+            
+        %>
+        <jsp:forward page="codigos.jsp"/>
+        <%
+            }
+
+%>
     </body>
 </html>

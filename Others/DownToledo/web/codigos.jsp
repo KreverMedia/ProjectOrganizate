@@ -84,8 +84,8 @@
                             %>
                             <tbody>
                                 <tr>
-                                    <td><a href="controller.jsp?op=eliminar&correo=<%=peti.getCorreo()%>" class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>button</a></td>
-                                    <td><a  class="waves-effect waves-light btn"><i class="material-icons ">check</i>button</a></td>
+                                    <td><a href="controller.jsp?op=eliminar&correo=<%=peti.getCorreo()%>" class="waves-effect waves-light btn red"><i class="material-icons">cancel</i>button</a></td>
+                                    <td><button  class="btn modal-trigger" data-target="modal1"><i class="material-icons ">check</i></button></td>
                                     <td><%=peti.getNombre()%></td>
                                     <td><%=peti.getApellido1()%></td>
                                     <td><%=peti.getApellido2()%></td>
@@ -113,7 +113,7 @@
                                 <tr>
                                     <td><%=nueva.getCodigo()%></td>
                                     <td><%=rol%></td>
-                                     <td><a href="controller.jsp?op=eliminarcodigo&codigo=<%=nueva.getCodigo()%>" class="waves-effect waves-light btn"><i class="material-icons left"></i>button</a></td>
+                                     <td><a href="controller.jsp?op=eliminarcodigo&codigo=<%=nueva.getCodigo()%>" class="waves-effect waves-light btn red"><i class="material-icons"></i>button</a></td>
                                 </tr>
                             </tbody>
                             <%
@@ -125,7 +125,12 @@
             </div>
 
         </div> 
-
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h1>hola</h1>
+                            </div>
+                        </div>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+            <script type="text/javascript" src="js/myjs.js"></script>
     </body>
 </html>
