@@ -25,8 +25,9 @@
             List lista;
             EntityTransaction transaction;
             em = (EntityManager) session.getAttribute("em");
-            session.setAttribute("codigosopeticiones",true);
+     
             if (em == null) {
+                       session.setAttribute("codigosopeticiones", true);
                 em = JPAUtil.getEntityManagerFactory().createEntityManager();
                 session.setAttribute("em", em);
             }
@@ -119,17 +120,16 @@
                 query = em.createQuery(sql);
                 List roles = query.getResultList();
                 session.setAttribute("roles", roles);
-                
-                
+
                 if ((boolean) session.getAttribute("codigosopeticiones")) {
-                    sql = "Select c from Peticiones c"; 
+                    sql = "Select c from Peticiones c";
                     query = em.createQuery(sql);
                     roles = query.getResultList();
                     session.setAttribute("peticiones", roles);
                 } else {
-                    sql="Select c from Nuevacuenta c";
-                    query= em.createQuery(sql);
-                    roles=query.getResultList();
+                    sql = "Select c from Nuevacuenta c";
+                    query = em.createQuery(sql);
+                    roles = query.getResultList();
                     session.setAttribute("codigos", roles);
                 }
         %>
@@ -146,7 +146,31 @@
         %>
         <jsp:forward page="correcto.jsp"/>
         <%
-                }
+            }
+        } else if (op.equals("cambiar")) {
+            boolean l = ((boolean) session.getAttribute("codigosopeticiones"));
+            if (l) {
+                session.setAttribute("codigosopeticiones", false);
+            } else {
+                session.setAttribute("codigosopeticiones", true);
+            }
+            String sql = "";
+            List roles;
+            Query query;
+            if ((boolean) session.getAttribute("codigosopeticiones")) {
+                sql = "Select c from Peticiones c";
+                query = em.createQuery(sql);
+                roles = query.getResultList();
+                session.setAttribute("peticiones", roles);
+            } else {
+                sql = "Select c from Nuevacuenta c";
+                query = em.createQuery(sql);
+                roles = query.getResultList();
+                session.setAttribute("codigos", roles);
+            }
+        %>
+        <jsp:forward page="codigos.jsp"/>
+        <%
             }
         %>
     </body>

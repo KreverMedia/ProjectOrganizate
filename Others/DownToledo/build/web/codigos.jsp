@@ -34,15 +34,15 @@
                     <img src="img/logo.png" alt=""/>
                 </div>
                 <div class="row">
-                    <div class="col s12 " style="margin-bottom: 0px">
-                        <a style="background-color:#FFCB00; font-weight: bold;"  href="controller.jsp?op=inicio" class="waves-effect waves-light btn"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a>
+                    <div class="col s12 center" style="margin-bottom: 0px">
+                        <a  style="margin-right: 20px;background-color:#FFCB00; font-weight: bold;"  href="controller.jsp?op=inicio" class="waves-effect waves-light btn"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a>
                         <%
                             if(codigosopeticiones){
                                 %>
-                                <a style="background-color:#FFCB00; font-weight: bold;"  href="controller.jsp?op=inicio" class="waves-effect waves-light btn"><i class="material-icons left">fiber_new</i>Ver códigos</a>
+                                <a style="background-color:#FFCB00; font-weight: bold;"  href="controller.jsp?op=cambiar" class="waves-effect waves-light btn"><i class="material-icons left">fiber_new</i>Ver códigos</a>
                                 <%
                                 }else{%>
-                                <a  style="background-color:#FFCB00; font-weight: bold;" href="controller.jsp?op=inicio" class="waves-effect waves-light btn"><i class="material-icons left">question_answer</i>Ver peticiones</a>
+                                <a  style="background-color:#FFCB00; font-weight: bold;" href="controller.jsp?op=cambiar" class="waves-effect waves-light btn"><i class="material-icons left">question_answer</i>Ver peticiones</a>
                         <%}%>
                         
                     </div>
@@ -84,8 +84,8 @@
                             %>
                             <tbody>
                                 <tr>
-                                    <td><a href="controller.jsp?op=eliminar&correo=<%=peti.getCorreo()%>" class="waves-effect waves-light btn"><i class="material-icons left">cancel</i>button</a></td>
-                                    <td><a  class="waves-effect waves-light btn"><i class="material-icons left">cancel</i>button</a></td>
+                                    <td><a href="controller.jsp?op=eliminar&correo=<%=peti.getCorreo()%>" class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>button</a></td>
+                                    <td><a  class="waves-effect waves-light btn"><i class="material-icons ">check</i>button</a></td>
                                     <td><%=peti.getNombre()%></td>
                                     <td><%=peti.getApellido1()%></td>
                                     <td><%=peti.getApellido2()%></td>
