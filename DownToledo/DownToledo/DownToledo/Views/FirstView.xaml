@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DownToledo.Views.FirstView" BackgroundColor="#3A6DC8">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="ima"  Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="1000" HeightRequest="1000"/>
+        <Label Text="Bienvenido a Down Toledo" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"  TextColor="White" FontSize="30" Margin="0,0,0,50"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Usuario:" Grid.Row="0" Grid.Column="0" TextColor="White" HorizontalOptions="End"  FontSize="30"/>
+            <Entry x:Name="user" Placeholder="Introduzca el usuario" Grid.Row="0" Grid.Column="1" TextColor="White" HorizontalOptions="Start" VerticalOptions="Start"/>
+            <Label Text="Contraseña:" Grid.Row="1" Grid.Column="0" TextColor="White" HorizontalOptions="End"  FontSize="30"/>
+            <Entry x:Name="pass" Placeholder="Introduzca la contraseña" Grid.Row="1" Grid.Column="1" TextColor="White" HorizontalOptions="Start" VerticalOptions="Start"/>
+            <Button x:Name="register" BackgroundColor="#FFCA02" Grid.Row="2" Grid.Column="0" TextColor="Black" HorizontalOptions="End" VerticalOptions="Start" Text="Registrarse" WidthRequest="200" HeightRequest="70"/>
+            <Button x:Name="loguin" BackgroundColor="#FFCA02" Grid.Row="2" Grid.Column="1" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Start" Text="Loguearse" WidthRequest="200" HeightRequest="70"/>
+        </Grid>
+    </Grid>
+</ContentPage>
