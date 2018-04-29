@@ -82,9 +82,22 @@ if(estado.equals("noadministrador")){
   <div class="col s12 " style="margin-bottom: 0px">
                         <h4 class="center-align white-text" style="font-family: Cooper Black">Lo siento pero no tienes permiso para acceder aqui.</h4>
                     </div>
-                     <div class=""controller.jsp?op=inicio"col s6 offset-s3">
-                        <a href= class="btn waves-effect waves-light black-text center"  style="margin-left: 100px; background-color:#FFCB00; font-weight: bold;
+                     <div class="col s6 offset-s3">
+                        <a href="controller.jsp?op=inicio" class="btn waves-effect waves-light black-text center"  style="margin-left: 100px; background-color:#FFCB00; font-weight: bold;
                                  margin-top: 20px">Volver a pagina principal
+                            <i class="material-icons right">assignment_return</i>
+                        </a>
+                    </div>
+                    <%
+}
+if(estado.equals("rellena")){
+%>
+<div class="col s12 " style="margin-bottom: 0px">
+                        <h4 class="center-align white-text" style="font-family: Cooper Black">Rellene alguno de los campos.</h4>
+                    </div>
+                     <div class="col s6 offset-s3">
+                        <a href="controller.jsp?op=inicio" class="btn waves-effect waves-light black-text center"  style="margin-left: 100px; background-color:#FFCB00; font-weight: bold;
+                                 margin-top: 20px">Volver al formulario
                             <i class="material-icons right">assignment_return</i>
                         </a>
                     </div>
@@ -97,6 +110,9 @@ if(estado.equals("noadministrador")){
 
         </div> 
 
-        <script type="text/javascript" src="js/materialize.min.js"></script>
+       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min_1.js"></script>
+        <script type="text/javascript" src="js/materialize_1.js"></script>
+        <script type="text/javascript" src="js/myjs_1.js"></script>
     </body>
 </html>

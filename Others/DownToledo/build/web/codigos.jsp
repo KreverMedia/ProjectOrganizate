@@ -16,7 +16,13 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
+  <script>
+        $(function(){
+            $('#modal1').modal();
+        })
+            
+        </script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
@@ -38,15 +44,15 @@
                         <a  style="margin-right: 20px;background-color:#FFCB00; font-weight: bold;"  href="controller.jsp?op=inicio" class="waves-effect waves-light btn"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a>
                         <%
                             if(codigosopeticiones){
-                                %>
-                                <a style="background-color:#FFCB00; font-weight: bold;"  href="controller.jsp?op=cambiar" class="waves-effect waves-light btn"><i class="material-icons left">fiber_new</i>Ver códigos</a>
-                                <%
+                        %>
+                        <a style="background-color:#FFCB00; font-weight: bold;"  href="controller.jsp?op=cambiar" class="waves-effect waves-light btn"><i class="material-icons left">fiber_new</i>Ver códigos</a>
+                        <%
                                 }else{%>
-                                <a  style="background-color:#FFCB00; font-weight: bold;" href="controller.jsp?op=cambiar" class="waves-effect waves-light btn"><i class="material-icons left">question_answer</i>Ver peticiones</a>
+                        <a  style="background-color:#FFCB00; font-weight: bold;" href="controller.jsp?op=cambiar" class="waves-effect waves-light btn"><i class="material-icons left">question_answer</i>Ver peticiones</a>
                         <%}%>
-                        
+
                     </div>
-                
+
 
                     <div class=" col s12">
                         <table class="striped">
@@ -54,8 +60,8 @@
                                 <%                                    if (codigosopeticiones) {
                                 %>
                                 <tr>
-                                    <th>Generar código</th>
                                     <th>Borrar</th>
+                                    <th>Generar código</th>
                                     <th>Nombre</th>
                                     <th>Apellido 1</th>
                                     <th> Apellido 2 </th>
@@ -84,8 +90,8 @@
                             %>
                             <tbody>
                                 <tr>
-                                    <td><a href="controller.jsp?op=eliminar&correo=<%=peti.getCorreo()%>" class="waves-effect waves-light btn red"><i class="material-icons">cancel</i>button</a></td>
-                                    <td><button  class="btn modal-trigger" data-target="modal1"><i class="material-icons ">check</i></button></td>
+                                    <td><a href="controller.jsp?op=eliminar&correo=<%=peti.getCorreo()%>" class="waves-effect waves-light btn red"><i class="material-icons">cancel</i></a></td>
+                                    <td><a href="controller.jsp?op=generarcodigo&correo=<%=peti.getCorreo()%>" class="modal-trigger btn green"><i class="material-icons ">check</i></a>
                                     <td><%=peti.getNombre()%></td>
                                     <td><%=peti.getApellido1()%></td>
                                     <td><%=peti.getApellido2()%></td>
@@ -113,7 +119,7 @@
                                 <tr>
                                     <td><%=nueva.getCodigo()%></td>
                                     <td><%=rol%></td>
-                                     <td><a href="controller.jsp?op=eliminarcodigo&codigo=<%=nueva.getCodigo()%>" class="waves-effect waves-light btn red"><i class="material-icons"></i>button</a></td>
+                                    <td><a href="controller.jsp?op=eliminarcodigo&codigo=<%=nueva.getCodigo()%>" class="waves-effect waves-light btn red"><i class="material-icons">cancel</i></a></td>
                                 </tr>
                             </tbody>
                             <%
@@ -123,14 +129,12 @@
                     </div>
                 </div>
             </div>
-
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h1>hola</h1>
+                </div>
+            </div>
         </div> 
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h1>hola</h1>
-                            </div>
-                        </div>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-            <script type="text/javascript" src="js/myjs.js"></script>
+
     </body>
 </html>

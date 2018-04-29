@@ -32,6 +32,7 @@
                 em = JPAUtil.getEntityManagerFactory().createEntityManager();
                 session.setAttribute("em", em);
             }
+
             String op;
             op = request.getParameter("op");
             if (op.equals("inicio")) {
@@ -109,7 +110,7 @@
                 Usuario usuario = (Usuario) usuarios.get(i);
                 if (user.equals(usuario.getNombreuser()) && pass.equals(usuario.getPassword())) {
                     existecuenta = true;
-                    Rol rol = (Rol) usuario.getRolCollection().toArray()[0];
+                    Rol rol = (Rol) usuario.getRolList().toArray()[0];
                     if (rol.getIdrol() == 1) {
                         esadministrador = true;
                         break;
@@ -189,26 +190,115 @@
         %>
         <jsp:forward page="codigos.jsp"/>
         <%
-            } else if (op.equals("eliminarcodigo")) {
-                String codigo = request.getParameter("codigo");
-                String sql = "Select c from Nuevacuenta c where c.codigo='" + codigo + "'";
+        } else if (op.equals("eliminarcodigo")) {
+            String codigo = request.getParameter("codigo");
+            String sql = "Select c from Nuevacuenta c where c.codigo='" + codigo + "'";
+            Query query = em.createQuery(sql);
+            Nuevacuenta codigoelegido = (Nuevacuenta) query.getResultList().get(0);
+            transaction = em.getTransaction();
+            transaction.begin();
+            em.remove(codigoelegido);
+            transaction.commit();
+            sql = "Select c from Nuevacuenta c";
+            query = em.createQuery(sql);
+            List roles = query.getResultList();
+            session.setAttribute("codigos", roles);
+            session.setAttribute("codigosopeticiones", false);
+
+        %>
+        <jsp:forward page="codigos.jsp"/>
+        <%        } else if (op.equals("generarcodigo")) {
+            String correo = request.getParameter("correo");
+            String sql = "Select c from Rol c";
+            Query query = em.createQuery(sql);
+            List list = query.getResultList();
+            session.setAttribute("roles", list);
+            session.setAttribute("correo", correo);
+            session.setAttribute("mandacorreo", false);
+        %>
+        <jsp:forward page="code.jsp"/>
+        <%
+        } else if (op.equals("generacode")) {
+            String rol = request.getParameter("rolelegido");
+            String rol2 = request.getParameter("nuevorol");
+            String roldef = "";
+            boolean crearcodigo = false;
+            boolean nuevorol = false;
+            if (rol != null) {
+                crearcodigo = true;
+                roldef = rol;
+            } else {
+                if (rol2.equals("")) {
+                    crearcodigo = false;
+                } else {
+                    crearcodigo = true;
+                    roldef = rol2;
+                    nuevorol = true;
+                }
+            }
+            if (crearcodigo) {
+                Rol newrol = new Rol();
+                if (nuevorol) {
+
+                    newrol.setRol(roldef);
+                    transaction = em.getTransaction();
+                    transaction.begin();
+                    em.persist(newrol);
+                    transaction.commit();
+
+                }
+                String sql = "SELECT c from Rol c where c.rol='" + roldef+"'";
                 Query query = em.createQuery(sql);
-                Nuevacuenta codigoelegido = (Nuevacuenta) query.getResultList().get(0);
+                newrol = (Rol) query.getResultList().get(0);
+                String clave = "";
+                int numero = 0;
+                char[] letras = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+                    'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F',
+                    'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+                for (int i = 0; i < 10; i++) {
+                    numero = (int) ((Math.random() * letras.length));
+
+                    clave += letras[numero];
+                }
+                Nuevacuenta nuevacuenta = new Nuevacuenta();
+                nuevacuenta.setCodigo(clave);
+                nuevacuenta.setIdrol(newrol.getIdrol());
+            
                 transaction = em.getTransaction();
                 transaction.begin();
-                em.remove(codigoelegido);
+                em.persist(nuevacuenta);
                 transaction.commit();
-                sql = "Select c from Nuevacuenta c";
+                request.setAttribute("codigo", clave);
+                String correo = (String) session.getAttribute("correo");
+                session.removeAttribute("correo");
+                sql = "SELECT c from Peticiones c where c.correo='" + correo+"'";
                 query = em.createQuery(sql);
-                List roles = query.getResultList();
-                session.setAttribute("codigos", roles);
-                session.setAttribute("codigosopeticiones", false);
-            
+               Peticiones peti= (Peticiones) query.getResultList().get(0);
+               transaction = em.getTransaction();
+                transaction.begin();
+                em.remove(peti);
+                transaction.commit();
+                request.setAttribute("correo", correo);
+                session.setAttribute("mandacorreo", true);
+            } else {
+                session.setAttribute("estado", "rellena");
+        %>
+        <jsp:forward page="correcto.jsp"/>
+        <%
+            }
+        %>
+        <jsp:forward page="code.jsp"/>
+        <%
+        } else if (op.equals("volver")) {
+        %>
+        <jsp:forward page="codigos.jsp"/>
+        <%
+        } else if (op.equals("volveragenerar")) {
         %>
         <jsp:forward page="codigos.jsp"/>
         <%
             }
 
-%>
+        %>
     </body>
 </html>

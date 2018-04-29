@@ -6,8 +6,8 @@
 package pojos;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -64,12 +64,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findByNombreuser", query = "SELECT u FROM Usuario u WHERE u.nombreuser = :nombreuser")
     , @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password")})
 public class Usuario implements Serializable {
-
-    @JoinTable(name = "rol_usuario", joinColumns = {
-        @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "idrol", referencedColumnName = "idrol")})
-    @ManyToMany
-    private Collection<Rol> rolCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -140,6 +134,11 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
+    @JoinTable(name = "rol_usuario", joinColumns = {
+        @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")}, inverseJoinColumns = {
+        @JoinColumn(name = "idrol", referencedColumnName = "idrol")})
+    @ManyToMany
+    private List<Rol> rolList;
 
     public Usuario() {
     }
@@ -388,6 +387,15 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
+    @XmlTransient
+    public List<Rol> getRolList() {
+        return rolList;
+    }
+
+    public void setRolList(List<Rol> rolList) {
+        this.rolList = rolList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -411,15 +419,6 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "pojos.Usuario[ idusuario=" + idusuario + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Rol> getRolCollection() {
-        return rolCollection;
-    }
-
-    public void setRolCollection(Collection<Rol> rolCollection) {
-        this.rolCollection = rolCollection;
     }
     
 }

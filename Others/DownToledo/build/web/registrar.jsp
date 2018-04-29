@@ -60,6 +60,9 @@
 
         </div> 
 
-        <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min_1.js"></script>
+        <script type="text/javascript" src="js/materialize_1.js"></script>
+        <script type="text/javascript" src="js/myjs_1.js"></script>
     </body>
 </html>

@@ -6,7 +6,7 @@
 package pojos;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,9 +33,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Rol.findByRol", query = "SELECT r FROM Rol r WHERE r.rol = :rol")})
 public class Rol implements Serializable {
 
-    @ManyToMany(mappedBy = "rolCollection")
-    private Collection<Usuario> usuarioCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +42,8 @@ public class Rol implements Serializable {
     @Basic(optional = false)
     @Column(name = "rol")
     private String rol;
+    @ManyToMany(mappedBy = "rolList")
+    private List<Usuario> usuarioList;
 
     public Rol() {
     }
@@ -74,6 +73,15 @@ public class Rol implements Serializable {
         this.rol = rol;
     }
 
+    @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -97,15 +105,6 @@ public class Rol implements Serializable {
     @Override
     public String toString() {
         return "pojos.Rol[ idrol=" + idrol + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Usuario> getUsuarioCollection() {
-        return usuarioCollection;
-    }
-
-    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
-        this.usuarioCollection = usuarioCollection;
     }
     
 }
