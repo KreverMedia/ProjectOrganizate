@@ -10,8 +10,8 @@
         <Image HorizontalAlignment="Center" Height="51" Grid.Row="0" Margin="669,360,10,0" VerticalAlignment="Top" Width="115" Source="..\Img\Logo.png"/>
         <Label Content="Nombre:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="46,10,601,0" RenderTransformOrigin="0.332,0.568" Width="147" Height="39"/>
         <Label Content="Correo:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="46,83,601,0" RenderTransformOrigin="0.332,0.568" Width="147" Height="39"/>
-        <Label Content="Descripción:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="46,143,549,0" RenderTransformOrigin="0.332,0.568" Width="199" Height="39"/>
-        <RichTextBox HorizontalAlignment="Left" Height="81" Margin="46,187,0,0" VerticalAlignment="Top" Width="721" FontFamily="Cooper Black">
+        <Label Content="Descripción:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="46,127,549,0" RenderTransformOrigin="0.332,0.568" Width="199" Height="39"/>
+        <RichTextBox HorizontalAlignment="Left" Height="51" Margin="46,166,0,0" VerticalAlignment="Top" Width="721" FontFamily="Cooper Black">
             <FlowDocument>
                 <Paragraph>
                     <Run x:Name="descripcion"/>
@@ -20,9 +20,11 @@
         </RichTextBox>
         <Button x:Name="nuevaclave" Content="General clave" HorizontalAlignment="Left" Margin="57,363,0,0" VerticalAlignment="Top" Width="188" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
         <Button x:Name="rechazar" Content="Rechazar" HorizontalAlignment="Left" Margin="367,363,0,0" VerticalAlignment="Top" Width="188" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
-        <Label Content="Rol que asignar:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="46,290,485,0" RenderTransformOrigin="0.332,0.568" Width="263" Height="47"/>
+        <Label Content="Nuevo rol que asignar:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" FontFamily="Cooper Black" Foreground="White" Margin="10,290,485,0" RenderTransformOrigin="0.332,0.568" Width="299" Height="47"/>
         <TextBox HorizontalAlignment="Left" Height="44" Margin="314,290,0,0" TextWrapping="Wrap" x:Name="rol" VerticalAlignment="Top" Width="438" FontSize="30" FontFamily="Cooper Black"/>
         <TextBox HorizontalAlignment="Left" Height="44" Margin="233,10,0,0" TextWrapping="Wrap" x:Name="nombre" VerticalAlignment="Top" Width="438" FontSize="30" FontFamily="Cooper Black"/>
         <TextBox HorizontalAlignment="Left" Height="44" Margin="233,78,0,0" TextWrapping="Wrap" x:Name="correo" VerticalAlignment="Top" Width="438" FontSize="30" FontFamily="Cooper Black"/>
+        <Label Content="Rol que asignar:" HorizontalAlignment="Left" Margin="46,241,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
+        <ComboBox x:Name="combo" FontSize="30" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="311,241,0,0" VerticalAlignment="Top" Width="436" Height="44"/>
     </Grid>
 </Window>

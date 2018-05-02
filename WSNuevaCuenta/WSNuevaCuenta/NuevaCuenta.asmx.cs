@@ -19,7 +19,7 @@ namespace WSNuevaCuenta
     {
         MySqlConnection con;
         [WebMethod]
-        public string CrearCodigo(int rol)
+        public string CrearCodigo(string rol)
         {
             con = new MySqlConnection();
             con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
@@ -48,18 +48,26 @@ namespace WSNuevaCuenta
                     Char character = Convert.ToChar(numero);
                     clave += character;
                 }
-                MySqlCommand com = new MySqlCommand("insert into nuevacuenta values('" + clave + "','" + rol + "')", con);
+                MySqlCommand com = new MySqlCommand("call createcode('" + clave + "'," + rol + ")", con);
                 com.ExecuteNonQuery();
                 con.Close();
                 NewCount nueva = new NewCount();
-                nueva.idrol = rol;
+                com = new MySqlCommand("call namerol(" + rol + ")", con);
+                con.Open();
+                MySqlDataReader reader = com.ExecuteReader();
+                reader.Read();
+                nueva.rol = (string)reader.GetValue(0);
                 nueva.clave = clave;
+                con.Close();
                 String respuesta = JsonConvert.SerializeObject(nueva);
                 return respuesta;
-            }catch(MySqlException e)
-            {
-                return "Ha ocurrido un error";
             }
+            catch (MySqlException)
+            {
+                return "error";
+            }
+               
+            
         }
         [WebMethod]
         public string CrearPeticion(string nombre,string apellido1,string apellido2, string correo, string descripcion )
@@ -70,7 +78,7 @@ namespace WSNuevaCuenta
             {
                 con.Open();
                
-                MySqlCommand com = new MySqlCommand("insert into peticiones  values(0,'"+nombre+"','"+apellido1+"','"+apellido2+"','"+correo+"','"+descripcion+"')", con);
+                MySqlCommand com = new MySqlCommand("call createpeti('"+nombre+"','"+apellido1+"','"+apellido2+"','"+correo+"','"+descripcion+"')", con);
                 com.ExecuteNonQuery();
                 con.Close();
                 
@@ -89,14 +97,14 @@ namespace WSNuevaCuenta
             try
             {
                 con.Open();
-                MySqlCommand com = new MySqlCommand("select * from nuevacuenta", con);
+                MySqlCommand com = new MySqlCommand("call allcodes()", con);
                 MySqlDataReader reader = com.ExecuteReader();
                 List<NewCount> listacodigos = new List<NewCount>();
                 while (reader.Read())
                 {
                     NewCount ncuenta = new NewCount();
                     ncuenta.clave =(String) reader.GetValue(0);
-                    ncuenta.idrol =(int) reader.GetValue(1);
+                    ncuenta.rol =(string) reader.GetValue(1);
                     listacodigos.Add(ncuenta);
                 }
                 Respuesta r = new Respuesta();
@@ -120,7 +128,7 @@ namespace WSNuevaCuenta
             try
             {
                 con.Open();
-                MySqlCommand com = new MySqlCommand("select * from peticiones", con);
+                MySqlCommand com = new MySqlCommand("call allpetis()", con);
                 MySqlDataReader reader = com.ExecuteReader();
                 List<Peticion> peticiones = new List<Peticion>();
                 while (reader.Read())
@@ -147,6 +155,36 @@ namespace WSNuevaCuenta
             }
         }
         [WebMethod]
+        public string SacarTodoslosroles()
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+                MySqlCommand com = new MySqlCommand("call allrol()", con);
+                MySqlDataReader reader = com.ExecuteReader();
+                List<string> peticiones = new List<string>();
+                while (reader.Read())
+                {
+                    
+                    peticiones.Add((string)reader.GetValue(0));
+                }
+                Respuestaroles rpeti = new Respuestaroles();
+                rpeti.roles = peticiones;
+                rpeti.correcto = 0;
+                return JsonConvert.SerializeObject(rpeti);
+
+            }
+            catch (MySqlException e)
+            {
+                RespuestaPeti rpeti = new RespuestaPeti();
+                rpeti.correcto = 1;
+                rpeti.peticiones = new List<Peticion>();
+                return JsonConvert.SerializeObject(rpeti);
+            }
+        }
+        [WebMethod]
         public string Eliminarcodigo(string codigo)
         {
             con = new MySqlConnection();
@@ -154,7 +192,7 @@ namespace WSNuevaCuenta
             try
             {
                 con.Open();
-                var com = new MySqlCommand("delete from nuevacuenta where codigo ='" + codigo + "'", con);
+                var com = new MySqlCommand("call deletecode ('"+codigo+"')", con);
                 com.ExecuteNonQuery();
                 con.Close();
                 return "ok";
@@ -172,7 +210,7 @@ namespace WSNuevaCuenta
             try
             {
                 con.Open();
-                var com = new MySqlCommand("delete from nuevacuenta", con);
+                var com = new MySqlCommand("call deleteallcodes()", con);
                 com.ExecuteNonQuery();
                 con.Close();
                 return "ok";
@@ -191,7 +229,7 @@ namespace WSNuevaCuenta
             {
                 con.Open();
                
-                    var com = new MySqlCommand("delete from peticiones where correo='" +correo+"'", con);
+                    var com = new MySqlCommand("call deletepeti('" +correo+"')", con);
                     com.ExecuteNonQuery();
                 
                 con.Close();
@@ -211,7 +249,7 @@ namespace WSNuevaCuenta
             {
                 con.Open();
                 
-                    var com = new MySqlCommand("delete from peticiones", con);
+                    var com = new MySqlCommand("call deleteallpetis()", con);
                     com.ExecuteNonQuery();
                 
                 con.Close();
@@ -221,6 +259,48 @@ namespace WSNuevaCuenta
             {
                 return "error";
             }
+        }
+        [WebMethod]
+        public string Crearnuevorol(string nuevorol)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+
+                var com = new MySqlCommand("call createnewrol('" + nuevorol + "')", con);
+                com.ExecuteNonQuery();
+
+                con.Close();
+                return "ok";
+            }
+            catch (MySqlException e)
+            {
+                return "error";
+            }
+        }
+        [WebMethod]
+        public string Saberidrol(string rol)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+
+                var com = new MySqlCommand("call whorol('" + rol + "')", con);
+                MySqlDataReader reader = com.ExecuteReader();
+                reader.Read();
+                string result = "" + reader.GetValue(0);
+                con.Close();
+                return result;
+            }
+            catch (MySqlException e)
+            {
+                return "error";
+            }
+
         }
     }
 }

@@ -98,14 +98,11 @@ namespace ProgramNewCount.ViewModel
                 if (Lista[i].eliminar)
                 {
                    z= l.Borrarcodigo(Lista[i].clave);
-                    
+                    Lista.Remove(Lista[i]);
+                    i = -1;
                 }
             }
-            if (z.Equals("ok"))
-            {
-                
-                Lista = convertirObservable(l.TodosLosCodigos());
-            }
+         
         }
 
         private ObservableCollection<NewCountMVVM> convertirObservable(List<NewCount> list)

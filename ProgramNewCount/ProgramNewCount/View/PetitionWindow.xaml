@@ -30,9 +30,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
-        <Button x:Name="atras" Content="Volver atras" HorizontalAlignment="Left" Margin="725,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
-        <Button  Content="Eliminar Seleccionados" Command="{Binding EliminarSeleccionados}" HorizontalAlignment="Left" Margin="27,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
-        <Button  Content="Eliminar a Todos" Command="{Binding EliminarTodos}" HorizontalAlignment="Left" Margin="357,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
+        <Button x:Name="atras" Content="Volver atras" HorizontalAlignment="Left" Margin="585,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
+        <Button  Content="Eliminar a Todos" Command="{Binding EliminarTodos}" HorizontalAlignment="Left" Margin="66,478,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
 
     </Grid>
 </Window>

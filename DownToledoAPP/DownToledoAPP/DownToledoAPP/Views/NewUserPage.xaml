@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DownToledoAPP.Views.NewUserPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="image" Source="local:ImageResource DownToledoAPP.Logo.jpg" Grid.Row="0" HorizontalOptions="Center"/>
+            <Entry x:Name="user"  FontFamily="Cooper Black" Grid.Row="1" HorizontalOptions="Center" Placeholder="Nombre usuario"  WidthRequest="300" Margin="10"/>
+            <Entry x:Name="pass"  FontFamily="Cooper Black" Grid.Row="2" HorizontalOptions="Center" Placeholder="Contraseña"  WidthRequest="300" Margin="10"/>
+            <Button x:Name="crear" TextColor="White" BackgroundColor="#FFCA02" FontFamily="Cooper Black"  HorizontalOptions="End" Grid.Row="3" Text="Comprobar código"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

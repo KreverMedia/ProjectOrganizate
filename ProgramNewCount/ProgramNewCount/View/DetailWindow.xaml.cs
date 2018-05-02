@@ -29,6 +29,7 @@ namespace ProgramNewCount.View
             descripcion.Text = peticionseleccionada.descripcion;
             nombre.IsEnabled = false;
             correo.IsEnabled = false;
+            cargarcombo();
             descripcion.IsEnabled = false;
             nuevaclave.Click += delegate { nueva(peticionseleccionada); };
             rechazar.Click +=delegate { rechazado(peticionseleccionada); };
@@ -40,11 +41,26 @@ namespace ProgramNewCount.View
             c.BorrarPeticion(peticion.correo);
             this.Close();
         }
-
+        private void cargarcombo()
+        {
+           var  cws = new CWS();
+            var r = cws.Sacartodoslosroles();
+            for (int i = 0; i < r.Count; i++)
+            {
+                combo.Items.Add(r[i]);
+            }
+        }
         private void nueva(Model.PeticionMVVM peticion)
         {
             c = new CWS();
-            c.Crearnuevousuario(rol.Text);
+            if (!(rol.Text.Equals("")))
+            {
+                c.Nuevocodigonuevorol(rol.Text);
+            }
+            else
+            {
+                c.Crearnuevousuario((string)combo.SelectedItem);
+            }
             c.BorrarPeticion(peticion.correo);
             this.Close();
         }

@@ -9,6 +9,7 @@
     <Grid Background="#3A6DC8">
         <Image HorizontalAlignment="Center" Height="112" Margin="330,10,361,0" VerticalAlignment="Top" Width="277" Source="..\Img\Logo.png"/>
         <Label Content="Nueva Password:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="52,188,643,0" RenderTransformOrigin="0.332,0.568" Width="273"/>
+        <Label Content="O" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White" Margin="522,286,406,0" RenderTransformOrigin="0.332,0.568" Width="42"/>
         <Label Content="Rol:" HorizontalAlignment="Left" Margin="254,237,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
         <Label Content="Peticiones:" HorizontalAlignment="Left" Margin="752,21,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
         <Label x:Name="peticiones" Content="0" HorizontalAlignment="Left" Margin="932,21,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
@@ -17,6 +18,8 @@
         <Button x:Name="lista" Content="Lista de claves sin usar" HorizontalAlignment="Left" Margin="388,409,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
         <Button x:Name="petis" Content="Consultar peticiones" HorizontalAlignment="Left" Margin="707,409,0,0" VerticalAlignment="Top" Width="220" Height="48" Background="#FFCA02" FontSize="18" FontFamily="Cooper Black"/>
         <ComboBox x:Name="combo" FontSize="30" FontFamily="Cooper Black" HorizontalAlignment="Left" Margin="331,237,0,0" VerticalAlignment="Top" Width="437" Height="44"/>
+        <Label Content="Nuevo rol:" HorizontalAlignment="Left" Margin="155,335,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Cooper Black" Foreground="White"/>
+        <TextBox x:Name="rol" HorizontalAlignment="Left" Height="44" Margin="331,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438" FontSize="30" FontFamily="Cooper Black"/>
 
     </Grid>
 </Window>

@@ -22,7 +22,7 @@ namespace ProgramNewCount.Connection
         {
            
             cliente = new HttpClient();
-            cliente.Timeout = TimeSpan.FromSeconds(4);
+            cliente.Timeout = TimeSpan.FromMinutes(1);
         }
 
         public NewCount Crearnuevousuario(string rol)
@@ -33,11 +33,34 @@ namespace ProgramNewCount.Connection
         private async Task<NewCount> NewUser(string rol)
         {
             
+            string r = "";
+            url = new Uri("http://localhost:61177/NuevaCuenta.asmx/Saberidrol");
+            formulario = new List<KeyValuePair<string, string>>();
+            formulario.Add(new KeyValuePair<string, string>("rol", rol));
+            content = new FormUrlEncodedContent(formulario);
+            var response = await cliente.PostAsync(url, content);
+            if (response.IsSuccessStatusCode)
+            {
+                var contenido = response.Content.ReadAsStringAsync().Result;
+                xml = new XmlDocument();
+                xml.LoadXml(contenido);
+                
+                 r=(xml.DocumentElement.InnerText);
+             
+            }
+
+
+
+
+
+
+
+
             url = new Uri("http://localhost:61177/NuevaCuenta.asmx/CrearCodigo");
             formulario = new List<KeyValuePair<string, string>>();
-            formulario.Add(new KeyValuePair<string, string>("rol",rol));
+            formulario.Add(new KeyValuePair<string, string>("rol",r));
             content = new FormUrlEncodedContent(formulario);
-            var response = await cliente.PostAsync(url,content);
+             response = await cliente.PostAsync(url,content);
             if (response.IsSuccessStatusCode)
             {
                 var contenido = response.Content.ReadAsStringAsync().Result;
@@ -204,5 +227,71 @@ namespace ProgramNewCount.Connection
                 return null;
             }
         }
+        public void CrearNuevorol(string rol)
+        {
+
+            var l = AsyncHelper.RunSync<string>(() =>   Createnewrol(rol));
+            
+
+        }
+
+        private async Task<string> Createnewrol(string rol)
+        {
+            url = new Uri("http://localhost:61177/NuevaCuenta.asmx/Crearnuevorol");
+            formulario = new List<KeyValuePair<string, string>>();
+            formulario.Add(new KeyValuePair<string, string>("nuevorol", rol));
+            content = new FormUrlEncodedContent(formulario);
+            var response = await cliente.PostAsync(url, content);
+            if (response.IsSuccessStatusCode)
+            {
+                var contenido = response.Content.ReadAsStringAsync().Result;
+                xml = new XmlDocument();
+                xml.LoadXml(contenido);
+                return xml.DocumentElement.InnerText;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public List<string> Sacartodoslosroles()
+        {
+            var l = AsyncHelper.RunSync<List<string>>(() => Allroles());
+            return l;
+        }
+
+        private async Task<List<string>> Allroles()
+        {
+            url = new Uri("http://localhost:61177/NuevaCuenta.asmx/SacarTodoslosroles");
+            var response = await cliente.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var contenido = response.Content.ReadAsStringAsync().Result;
+                xml = new XmlDocument();
+                xml.LoadXml(contenido);
+                var listadepeticiones = new Respuestaroles();
+                listadepeticiones = JsonConvert.DeserializeObject<Respuestaroles>(xml.DocumentElement.InnerText);
+                if (listadepeticiones.correcto == 0)
+                {
+                    return listadepeticiones.roles;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+           
+        }
+        public NewCount Nuevocodigonuevorol(string rol)
+        {
+            var l = AsyncHelper.RunSync<string>(() => Createnewrol(rol));
+            var r  = AsyncHelper.RunSync<NewCount>(() => NewUser(rol));
+            return r;
+        }
+
     }
 }

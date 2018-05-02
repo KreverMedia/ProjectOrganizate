@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DownToledoAPP.Views.CodePage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#3A6DC8">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="image" Source="local:ImageResource DownToledoAPP.Logo.jpg" Grid.Row="0" HorizontalOptions="Center"/>
+            <Entry x:Name="code"  FontFamily="Cooper Black" Grid.Row="1" HorizontalOptions="Center" Placeholder="Introduzca el codigo que ha recibido"  WidthRequest="300" Margin="10"/>
+            <Button x:Name="comprobar" TextColor="White" BackgroundColor="#FFCA02" FontFamily="Cooper Black"  HorizontalOptions="End" Grid.Row="2" Text="Comprobar código"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

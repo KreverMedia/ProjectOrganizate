@@ -66,11 +66,12 @@ namespace ProgramNewCount.ViewModel
             }
         }
         private CWS l;
+        public ICommand EliminarTodos { get; set; }
         public PetitionViewModel()
         {
             l = new CWS();
             Lista=(convertirenObservable(l.TodaslasPeticiones()));
-      
+            EliminarTodos = new Command(AccionEliminarTodo);
         }
 
         private ObservableCollection<PeticionMVVM> convertirenObservable(List<Peticion> list)
@@ -90,8 +91,20 @@ namespace ProgramNewCount.ViewModel
             }
             return r;
         }
+        private void AccionEliminarTodo(object obj)
+        {
+
+            var z = l.BorrarTodaslasPeticiones();
+            if (z.Equals("ok"))
+            {
+                while (Lista.Count > 0)
+                {
+                    Lista.Remove(Lista[0]);
+                }
+            }
+
+        }
 
 
-        
     }
 }

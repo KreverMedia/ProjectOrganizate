@@ -32,7 +32,17 @@ namespace ProgramNewCount
             lista.Click += listadecodigos;
             petis.Click += ventanapeticiones;
             cargarpetis();
-            
+            cargarcombo();
+        }
+
+        private void cargarcombo()
+        {
+            cws = new CWS();
+            var r=cws.Sacartodoslosroles();
+            for(int i=0; i < r.Count; i++)
+            {
+                combo.Items.Add(r[i]);
+            }
         }
 
         private void cargarpetis()
@@ -59,14 +69,37 @@ namespace ProgramNewCount
             
         }
 
-        private void nuevocodigo(object sender, RoutedEventArgs e)
+        private  void nuevocodigo(object sender, RoutedEventArgs e)
         {
-            if (!rol.Text.Equals(""))
+            if (combo.SelectedItem == null)
             {
-                var newcode = cws.Crearnuevousuario(rol.Text);
+                if (!rol.Text.Equals(""))
+                {
+                    
+
+                    var newcode = cws.Nuevocodigonuevorol(rol.Text);
+                    if (newcode != null)
+                    {
+                        rol.Text = newcode.rol;
+                        clave.Text = newcode.clave;
+                        cargarcombo();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ha ocurrido un error, compruebe su conexión a Internet", "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No podemos crear un nuevo código sin saber su rol", "Rellene el campo de Rol", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK);
+
+                }
+            }
+            else
+            {
+                var newcode = cws.Crearnuevousuario(combo.SelectedItem.ToString());
                 if (newcode != null)
                 {
-                    rol.Text = newcode.rol;
                     clave.Text = newcode.clave;
                 }
                 else
@@ -74,12 +107,6 @@ namespace ProgramNewCount
                     MessageBox.Show("Ha ocurrido un error, compruebe su conexión a Internet", "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
                 }
             }
-            else
-            {
-                MessageBox.Show("No podemos crear un nuevo código sin saber su rol", "Rellene el campo de Rol", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK);
-              
-            }
-            
         }
     }
 }

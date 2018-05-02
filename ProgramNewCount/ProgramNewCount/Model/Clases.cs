@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramNewCount.Model
 {
-   public class NewCount
+    public class NewCount
     {
         public string clave { get; set; }
         public string rol { get; set; }
@@ -43,5 +43,11 @@ namespace ProgramNewCount.Model
     {
         public int correcto { get; set; }
         public List<Peticion> peticiones { get; set; }
+    }
+    public class Respuestaroles
+    {
+        public int correcto { get; set; }
+        public List<string> roles { get; set; }
+
     }
 }
