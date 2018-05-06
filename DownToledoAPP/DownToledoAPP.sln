@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownToledoAPP.iOS", "DownTo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownToledoAPP.UWP", "DownToledoAPP\DownToledoAPP.UWP\DownToledoAPP.UWP.csproj", "{82B04D48-4B7D-45D6-8497-2CBDECE419D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownToledoAPP", "DownToledoAPP\DownToledoAPP\DownToledoAPP.csproj", "{CE188E0B-6E2A-492A-BFA8-E9136C5F5914}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DownToledoAPP", "DownToledoAPP\DownToledoAPP\DownToledoAPP.csproj", "{CE188E0B-6E2A-492A-BFA8-E9136C5F5914}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

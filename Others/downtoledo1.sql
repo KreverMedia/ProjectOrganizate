@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2018 a las 13:49:30
+-- Tiempo de generación: 06-05-2018 a las 22:05:30
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -21,6 +21,94 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `downtoledo`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `allcodes` ()  BEGIN
+select a.codigo,b.rol from nuevacuenta a, rol b where a.idrol=b.idrol;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `allpetis` ()  BEGIN
+select * from peticiones;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `allrol` ()  BEGIN
+select rol from rol;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `comprobarcode` (`codex` VARCHAR(10))  BEGIN
+select codigo from nuevacuenta where codigo=codex;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `comprobarexisteuser` (`usuariox` VARCHAR(255))  BEGIN
+select nombreuser from usuario where nombreuser=usuariox;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `comprobarusuario` (`usuariox` VARCHAR(255), `contrasenax` VARCHAR(255))  BEGIN
+select nombreuser,password from usuario where nombreuser=usuariox and password=contrasenax;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createcode` (`clave` VARCHAR(255), `idrol` INT(255))  BEGIN
+INSERT into nuevacuenta values(clave,idrol);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createnewrol` (`rol` VARCHAR(255))  BEGIN
+insert into rol values(null,rol);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createpeti` (`nombre` VARCHAR(255), `apellido1` VARCHAR(255), `apellido2` VARCHAR(255), `correo` VARCHAR(255), `descripcion` VARCHAR(255))  BEGIN
+insert into peticiones values(null,nombre,apellido1,apellido2,correo,descripcion);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createuser` (`userx` VARCHAR(255), `passx` VARCHAR(255))  BEGIN
+insert into usuario  values(null,'por defecto','por defecto',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,userx,passx);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteallcodes` ()  BEGIN
+delete from nuevacuenta;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteallpetis` ()  BEGIN
+delete from peticiones;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletecode` (`codex` VARCHAR(10))  BEGIN
+delete from nuevacuenta where codigo=codex;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletepeti` (`correo` VARCHAR(255))  BEGIN
+delete from peticiones where correo=correo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `descargardatosuser` (`usuariox` VARCHAR(255))  BEGIN
+select a.nombre,a.apellido1,a.apellido2,a.dni,a.fecha_nacimiento, a.fecha_incorporacion,
+a.fecha_finalizacion
+,a.edad,a.correo,
+a.telefono1,a.telefono2,a.numss,a.direccion,a.localidad,a.provincia,
+a.antiguedad,a.estudios,a.experiencia,
+a.idiomas,a.cargo,a.sueldo_mensual,a.cotizacion_porcentaje,a.horario,a.foto,a.documentacion,
+a.porcentaje_discapacidad,a.nombreuser,a.password,b.idrol
+from usuario a,rol_usuario b
+where a.nombreuser=usuariox and a.idusuario=b.idusuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `descargarinfousuario` (`usuariox` VARCHAR(255))  BEGIN
+select a.idusuario,a.nombre,a.apellido1,a.apellido2,a.foto,a.nombreuser,b.idrol
+from usuario a, rol_usuario b
+where a.nombreuser=usuariox and a.idusuario=b.idusuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `namerol` (`idrolex` INT(255))  BEGIN
+select rol from rol where idrol=idrolex;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `whorol` (`rolex` VARCHAR(255))  BEGIN
+select idrol from rol where rol=rolex;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -70,6 +158,20 @@ CREATE TABLE `medicacion_usuario` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `noticias`
+--
+
+CREATE TABLE `noticias` (
+  `idnoticia` int(255) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `idcreador` int(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `nuevacuenta`
 --
 
@@ -77,6 +179,13 @@ CREATE TABLE `nuevacuenta` (
   `codigo` varchar(255) NOT NULL,
   `idrol` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `nuevacuenta`
+--
+
+INSERT INTO `nuevacuenta` (`codigo`, `idrol`) VALUES
+('FMfNRQE5lx', 12);
 
 -- --------------------------------------------------------
 
@@ -158,7 +267,14 @@ CREATE TABLE `rol` (
 INSERT INTO `rol` (`idrol`, `rol`) VALUES
 (1, 'administrador'),
 (4, 'trabajador'),
-(5, 'trabajador');
+(5, 'trabajador'),
+(6, 'Joder'),
+(7, 'loqui'),
+(8, 'adsadas'),
+(9, 'sda'),
+(10, 'dddd'),
+(11, 'kase.o'),
+(12, 'family');
 
 -- --------------------------------------------------------
 
@@ -178,6 +294,21 @@ CREATE TABLE `rol_usuario` (
 INSERT INTO `rol_usuario` (`idrol`, `idusuario`) VALUES
 (1, 1),
 (4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tablon`
+--
+
+CREATE TABLE `tablon` (
+  `idanuncio` int(255) NOT NULL,
+  `idcreador` int(255) NOT NULL,
+  `descripcion` varchar(1000) DEFAULT NULL,
+  `idencargado` int(255) DEFAULT NULL,
+  `area` varchar(1000) DEFAULT NULL,
+  `enprogreso` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -209,7 +340,7 @@ CREATE TABLE `usuario` (
   `cargo` varchar(255) DEFAULT NULL,
   `sueldo_mensual` int(4) DEFAULT NULL,
   `cotizacion_porcentaje` int(3) DEFAULT NULL,
-  `idhorario` int(255) DEFAULT NULL,
+  `horario` varchar(255) DEFAULT NULL,
   `foto` varchar(1000) DEFAULT NULL,
   `documentacion` varchar(1000) DEFAULT NULL,
   `porcentaje_discapacidad` int(3) DEFAULT NULL,
@@ -221,9 +352,23 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `nombre`, `apellido1`, `apellido2`, `dni`, `fecha_nacimiento`, `edad`, `correo`, `telefono1`, `telefono2`, `numss`, `direccion`, `localidad`, `provincia`, `fecha_incorporacion`, `fecha_finalizacion`, `antiguedad`, `estudios`, `experiencia`, `idiomas`, `cargo`, `sueldo_mensual`, `cotizacion_porcentaje`, `idhorario`, `foto`, `documentacion`, `porcentaje_discapacidad`, `nombreuser`, `password`) VALUES
+INSERT INTO `usuario` (`idusuario`, `nombre`, `apellido1`, `apellido2`, `dni`, `fecha_nacimiento`, `edad`, `correo`, `telefono1`, `telefono2`, `numss`, `direccion`, `localidad`, `provincia`, `fecha_incorporacion`, `fecha_finalizacion`, `antiguedad`, `estudios`, `experiencia`, `idiomas`, `cargo`, `sueldo_mensual`, `cotizacion_porcentaje`, `horario`, `foto`, `documentacion`, `porcentaje_discapacidad`, `nombreuser`, `password`) VALUES
 (1, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'diego', 'diego'),
-(2, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'maria', 'maria');
+(2, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'maria', 'maria'),
+(3, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pene', 'pene'),
+(4, 'por defecto', 'por defecto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pene', 'pene'),
+(5, 'por defecto', 'por defecto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pene', 'pene');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `visibilidad_tablon`
+--
+
+CREATE TABLE `visibilidad_tablon` (
+  `idanuncio` int(255) NOT NULL,
+  `idrol` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -248,6 +393,12 @@ ALTER TABLE `medicacion`
 ALTER TABLE `medicacion_usuario`
   ADD PRIMARY KEY (`idusuario`,`idmedicacion`),
   ADD KEY `fk_idmedicacion` (`idmedicacion`);
+
+--
+-- Indices de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  ADD PRIMARY KEY (`idnoticia`);
 
 --
 -- Indices de la tabla `nuevacuenta`
@@ -303,10 +454,24 @@ ALTER TABLE `rol_usuario`
   ADD KEY `fk_new_rol_usuario` (`idusuario`);
 
 --
+-- Indices de la tabla `tablon`
+--
+ALTER TABLE `tablon`
+  ADD PRIMARY KEY (`idanuncio`),
+  ADD KEY `pk_tablon` (`idcreador`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idusuario`);
+
+--
+-- Indices de la tabla `visibilidad_tablon`
+--
+ALTER TABLE `visibilidad_tablon`
+  ADD PRIMARY KEY (`idanuncio`,`idrol`),
+  ADD KEY `fk_tablon` (`idrol`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -325,6 +490,12 @@ ALTER TABLE `medicacion`
   MODIFY `idmedicacion` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  MODIFY `idnoticia` int(255) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `parentesco`
 --
 ALTER TABLE `parentesco`
@@ -340,13 +511,19 @@ ALTER TABLE `peticiones`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idrol` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idrol` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `tablon`
+--
+ALTER TABLE `tablon`
+  MODIFY `idanuncio` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idusuario` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -393,6 +570,19 @@ ALTER TABLE `responsabilidad`
 ALTER TABLE `rol_usuario`
   ADD CONSTRAINT `fk_new_rol_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`),
   ADD CONSTRAINT `fk_nuevo_rol_usuarios` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`);
+
+--
+-- Filtros para la tabla `tablon`
+--
+ALTER TABLE `tablon`
+  ADD CONSTRAINT `pk_tablon` FOREIGN KEY (`idcreador`) REFERENCES `usuario` (`idusuario`);
+
+--
+-- Filtros para la tabla `visibilidad_tablon`
+--
+ALTER TABLE `visibilidad_tablon`
+  ADD CONSTRAINT `fk_tablon` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`),
+  ADD CONSTRAINT `fk_visibilidad` FOREIGN KEY (`idanuncio`) REFERENCES `tablon` (`idanuncio`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

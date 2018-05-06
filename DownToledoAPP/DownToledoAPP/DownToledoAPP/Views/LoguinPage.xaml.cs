@@ -17,17 +17,23 @@ namespace DownToledoAPP.Views
 		{
 			InitializeComponent ();
             loguin.Clicked += loguearse;
+            register.Clicked += registrarse;
 		}
+
+        private void registrarse(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CodePage());
+        }
 
         private void loguearse(object sender, EventArgs e)
         {
             var cws = new CWS();
             var bo = cws.ComprobarUsuario(user.Text, pass.Text);
-            if (bo)
-            {
-                Navigation.PushAsync(new InfoPage());
+            //if (bo)
+            //{
+                Navigation.PushAsync(new InfoPage(user.Text));
                 Navigation.RemovePage(this);
-            }
+            //}
         }
     }
 }

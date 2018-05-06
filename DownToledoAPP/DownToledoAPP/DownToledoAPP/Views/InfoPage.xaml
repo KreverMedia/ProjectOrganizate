@@ -1,12 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DownToledoAPP.Views.InfoPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+
+    <ContentPage  Icon="tablon.png" BackgroundColor="#3A6DC8">
+        <ListView x:Name="tablon"></ListView>
+    </ContentPage>
+
+    <ContentPage Icon="actividades.png" BackgroundColor="#3A6DC8"  >
+        <Grid>
+            <ListView x:Name="actividades">></ListView>
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Icon="chat.png" BackgroundColor="#3A6DC8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="salas" Grid.Row="0"/>
+            <Button x:Name="newchat" BackgroundColor="#FFCA02"  FontFamily="Cooper Black" TextColor="White" HorizontalOptions="Center" Text="Abrir nuevo chat"/>
+        </Grid>
+    </ContentPage>
+
+    <ContentPage  Icon="usuarios.png" BackgroundColor="#3A6DC8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="usuariosrela" Grid.Row="0"/>
+            <Button x:Name="alluser" Grid.Row="1"  BackgroundColor="#FFCA02"  FontFamily="Cooper Black" TextColor="White" HorizontalOptions="Center" Text="Ver mas usuarios"/>
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Icon="cuenta.png" BackgroundColor="#3A6DC8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="image" Source="Logo.png" Grid.Row="0" HorizontalOptions="Center"/>
+            <Label x:Name="name" Grid.Row="1" HorizontalOptions="Center" FontFamily="Cooper Black" />
+            <Button x:Name="userinfo" BackgroundColor="#FFCA02"  FontFamily="Cooper Black" Grid.Row="2" HorizontalOptions="Center" Text="Editar datos"  WidthRequest="300" Margin="10"/>
+            <Button x:Name="logout" BackgroundColor="#FFCA02"  FontFamily="Cooper Black" Grid.Row="3" HorizontalOptions="Center" Text="Cerrar sesión" WidthRequest="300" Margin="10"/>
+        </Grid>
+    </ContentPage>
+
+</TabbedPage>

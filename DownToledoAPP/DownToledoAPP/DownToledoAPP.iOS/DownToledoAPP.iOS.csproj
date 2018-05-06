@@ -119,6 +119,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -127,5 +130,23 @@
       <Project>{17897B69-44ED-4D32-A400-E886675F62FD}</Project>
       <Name>DownToledoAPP</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cuenta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tablon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\usuarios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\actividades.png" />
   </ItemGroup>
 </Project>

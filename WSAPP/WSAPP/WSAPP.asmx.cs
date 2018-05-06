@@ -289,6 +289,66 @@ namespace WSAPP
                 return "error";
             }
         }
+        [WebMethod]
+        public string DescargarDatosUsuarioInfo(string user)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            try
+            {
+                con.Open();
+                MySqlCommand com = new MySqlCommand("call descargarinfousuario('" + user + "')", con);
+                MySqlDataReader reader = com.ExecuteReader();
+                reader.Read();
+                DatosUsuario datos = new DatosUsuario();
+                if (!reader.GetValue(0).Equals(DBNull.Value))
+                {
+                    datos.idusuario = Convert.ToInt32(reader.GetValue(0));
+                }
+                if (!reader.GetValue(1).Equals(DBNull.Value))
+                {
+                    datos.nombre = Convert.ToString(reader.GetValue(1));
+                }
+             
+                if (!reader.GetValue(2).Equals(DBNull.Value))
+                {
+                    datos.apellido1 = Convert.ToString(reader.GetValue(2));
+                }
+                if (!reader.GetValue(3).Equals(DBNull.Value))
+                {
+                    datos.apellido2 = Convert.ToString(reader.GetValue(3));
+                }
+               
+
+                if (!reader.GetValue(4).Equals(DBNull.Value))
+                {
+
+                    datos.foto = Convert.ToString(reader.GetValue(4));
+
+                }
+                if (!reader.GetValue(5).Equals(DBNull.Value))
+                {
+
+                    datos.nombreuser = Convert.ToString(reader.GetValue(5));
+
+                }
+               
+                
+                if (!reader.GetValue(6).Equals(DBNull.Value))
+                {
+
+                    datos.idrol = Convert.ToInt16(reader.GetValue(6));
+
+                }
+                con.Close();
+                return JsonConvert.SerializeObject(datos);
+
+            }
+            catch (MySqlException)
+            {
+                return "error";
+            }
+        }
 
     }
 }

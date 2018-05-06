@@ -10,7 +10,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Image x:Name="image" Source="local:ImageResource DownToledoAPP.Logo.jpg" Grid.Row="0" HorizontalOptions="Center"/>
+            <Image x:Name="image" Source="Logo.png" Grid.Row="0" HorizontalOptions="Center"/>
             <Entry x:Name="code"  FontFamily="Cooper Black" Grid.Row="1" HorizontalOptions="Center" Placeholder="Introduzca el codigo que ha recibido"  WidthRequest="300" Margin="10"/>
             <Button x:Name="comprobar" TextColor="White" BackgroundColor="#FFCA02" FontFamily="Cooper Black"  HorizontalOptions="End" Grid.Row="2" Text="Comprobar código"/>
         </Grid>

@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DownToledoAPP.Views.ChangeInformation">
+    <ContentPage>
+    <ContentPage.Content>
+        <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="imagenusuario" Grid.Column="0"/>
+                <Button x:Name="tomarfoto" Grid.Column="1" Text="Cambiar imagen" BackgroundColor="#FFCA02"  FontFamily="Cooper Black"/>
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="name" Grid.Column="0" Placeholder="Nombre"/>
+                <Entry x:Name="surname1" Grid.Column="1" Placeholder="1º Apellido"/>
+                <Entry x:Name="surname2" Grid.Column="2" Placeholder="2º Apellido"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="dni" Grid.Column="0" Placeholder="DNI" WidthRequest="300"/>
+                <Entry x:Name="email" Grid.Column="1" Placeholder="Correo electrónico" Keyboard="Email"/>
+                <Entry x:Name="telefono1" Grid.Column="2" Placeholder="Telefono principal" Keyboard="Telephone"/>
+                <Entry x:Name="telefono2" Grid.Column="3" Placeholder="Telefono secundario" Keyboard="Telephone"/>
+            </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Entry x:Name="telefono1" Grid.Column="2" Placeholder="Telefono principal" Keyboard="Telephone"/>
+                        <Entry x:Name="telefono2" Grid.Column="3" Placeholder="Telefono secundario" Keyboard="Telephone"/>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Text="Fecha de nacimiento" Grid.Row="0" Grid.Column="0"/>
+              
+                <DatePicker x:Name="fechanacimiento" Grid.Column="0" Grid.Row="1"/>
+                </Grid>
+            
+            
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="nombreuser" Grid.Column="0" Placeholder="Nombre de usuario"/>
+                <Entry x:Name="pass" Grid.Column="1" Placeholder="Contraseña"/>
+            </Grid>
+            
+            <Entry x:Name="gradodiscapacidad" Grid.Row="6" Placeholder="Grado de discapacidad"/>
+            <Button x:Name="documentacion" Grid.Row="7" Text="Ver documentacion" BackgroundColor="#FFCA02"  FontFamily="Cooper Black"/>
+               
+            
+        </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+    </ContentPage>
+    <ContentPage>
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Entry x:Name="numss" Grid.Row="0" Placeholder="Numero S.S"/>
+                <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+        
+                </Grid.ColumnDefinitions>
+                   
+                <Entry x:Name="localidad" Grid.Column="0" Placeholder="Localidad"/>
+                <Entry x:Name="provincia" Grid.Column="1" Placeholder="Provincia"/>
+            </Grid>
+                <Entry x:Name="direccion" Grid.Row="2" Placeholder="Dirección"/>
+                <Entry x:Name="antiguedad"  Grid.Row="3" Placeholder="Antigüedad"/>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage>
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Entry x:Name="estudios" Grid.Row="0"   Placeholder="Escribe tus estudios separados por una coma (,)"/>
+                <Entry x:Name="experiencia" Grid.Row="1" Placeholder="Escribe tu experiencia separada por una coma (,)"/>
+                <Entry x:Name="idiomas" Grid.Row="2"   Placeholder="Escribe los idiomas que sepas separados por comas (,)"/>
+            </Grid>
+      
+
+            
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage>
+        <ContentPage.Content>
+            <Grid Grid.Row="0" x:Name="datosadmin">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="sueldo" Grid.Column="0" Placeholder="Sueldo del trabajador"/>
+                <Entry x:Name="cotizacion" Grid.Column="1" Placeholder="Porcentaje de cotización" Keyboard="Numeric"/>
+                <Entry x:Name="horario" Grid.Column="3" Placeholder="Horario del trabajador"/>
+                <Label Text="Fecha de incorporación" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="Fecha de finalización" Grid.Row="0" Grid.Column="2"/>
+                <DatePicker x:Name="fechaincorporacion" Grid.Column="1" Grid.Row="1"/>
+                <DatePicker x:Name="fechafinalizacion" Grid.Column="2" Grid.Row="1"/>
+                <Entry x:Name="cargo" Grid.Row="8"   Placeholder="Cargo en la asociación"/>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>
