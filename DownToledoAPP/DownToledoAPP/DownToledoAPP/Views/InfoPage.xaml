@@ -17,7 +17,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ListView x:Name="salas" Grid.Row="0"/>
             <Button x:Name="newchat" BackgroundColor="#FFCA02"  FontFamily="Cooper Black" TextColor="White" HorizontalOptions="Center" Text="Abrir nuevo chat"/>
@@ -28,7 +28,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ListView x:Name="usuariosrela" Grid.Row="0"/>
             <Button x:Name="alluser" Grid.Row="1"  BackgroundColor="#FFCA02"  FontFamily="Cooper Black" TextColor="White" HorizontalOptions="Center" Text="Ver mas usuarios"/>
@@ -38,11 +38,11 @@
     <ContentPage Icon="cuenta.png" BackgroundColor="#3A6DC8">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Image x:Name="image" Source="Logo.png" Grid.Row="0" HorizontalOptions="Center"/>
             <Label x:Name="name" Grid.Row="1" HorizontalOptions="Center" FontFamily="Cooper Black" />

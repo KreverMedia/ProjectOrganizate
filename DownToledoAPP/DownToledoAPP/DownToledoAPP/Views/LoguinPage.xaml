@@ -6,10 +6,10 @@
     <ContentPage.Content>
         <Grid BackgroundColor="#3A6DC8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Image x:Name="image" Source="Logo.png" Grid.Row="0" HorizontalOptions="Center"/>
             <Entry x:Name="user"  FontFamily="Cooper Black" Grid.Row="1" HorizontalOptions="Center" Placeholder="Usuario"  WidthRequest="300" Margin="10"/>

@@ -29,11 +29,11 @@ namespace DownToledoAPP.Views
         {
             var cws = new CWS();
             var bo = cws.ComprobarUsuario(user.Text, pass.Text);
-            //if (bo)
-            //{
+            if (bo)
+            {
                 Navigation.PushAsync(new InfoPage(user.Text));
                 Navigation.RemovePage(this);
-            //}
+            }
         }
     }
 }

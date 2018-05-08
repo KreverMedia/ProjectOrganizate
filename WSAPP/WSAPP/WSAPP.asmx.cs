@@ -24,7 +24,7 @@ namespace WSAPP
         public string Comprobarusuario(string usuario, string contra)
         {
             con = new MySqlConnection();
-            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=db736844368.db.1and1.com;Database=db736844368; Uid=dbo736844368;Pwd=191295Di+;SslMode=none";
             try
             {
                 con.Open();
@@ -47,7 +47,7 @@ namespace WSAPP
         public string ComprobarCodigo(string codigo)
         {
             con = new MySqlConnection();
-            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=db736844368.db.1and1.com;Database=db736844368; Uid=dbo736844368;Pwd=191295Di+;SslMode=none";
             try
             {
                 con.Open();
@@ -70,7 +70,7 @@ namespace WSAPP
         public string Comprobarexisteusuario(string usuario)
         {
             con = new MySqlConnection();
-            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=db736844368.db.1and1.com;Database=db736844368; Uid=dbo736844368;Pwd=191295Di+;SslMode=none";
             try
             {
                 con.Open();
@@ -92,7 +92,7 @@ namespace WSAPP
         public string DescargarDatosUsuario(string user)
         {
             con = new MySqlConnection();
-            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=db736844368.db.1and1.com;Database=db736844368; Uid=dbo736844368;Pwd=191295Di+;SslMode=none";
             try
             {
                 con.Open();
@@ -255,7 +255,7 @@ namespace WSAPP
         public string Eliminarcodigo(string codigo)
         {
             con = new MySqlConnection();
-            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=db736844368.db.1and1.com;Database=db736844368; Uid=dbo736844368;Pwd=191295Di+;SslMode=none";
             try
             {
                 con.Open();
@@ -273,7 +273,7 @@ namespace WSAPP
         public string Crearusuario(string user, string pass)
         {
             con = new MySqlConnection();
-            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=db736844368.db.1and1.com;Database=db736844368; Uid=dbo736844368;Pwd=191295Di+;SslMode=none";
             try
             {
                 con.Open();
@@ -293,7 +293,7 @@ namespace WSAPP
         public string DescargarDatosUsuarioInfo(string user)
         {
             con = new MySqlConnection();
-            con.ConnectionString = "Server=127.0.0.1;Database=downtoledo; Uid=toor;Pwd=toor;SslMode=none";
+            con.ConnectionString = "Server=db736844368.db.1and1.com;Database=db736844368; Uid=dbo736844368;Pwd=191295Di+;SslMode=none";
             try
             {
                 con.Open();

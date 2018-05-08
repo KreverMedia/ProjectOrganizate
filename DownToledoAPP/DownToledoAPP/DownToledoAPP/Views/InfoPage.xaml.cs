@@ -30,7 +30,7 @@ namespace DownToledoAPP.Views
 
         private async void change(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ChangeInformation(/*actualusuario.nombreuser*/ null));
+            await Navigation.PushAsync(new ChangeInformation(actualusuario.nombreuser));
             Navigation.RemovePage(this);
         }
 
